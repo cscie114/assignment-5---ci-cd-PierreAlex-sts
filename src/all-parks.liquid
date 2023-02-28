@@ -1,0 +1,12 @@
+---
+layout: base
+title: Parks Listing 
+---
+<a href="/">back home</a>
+<ul>
+  {% for item in collections.parks %}
+    <li>
+      <a href="{{ item.url  }}">{{ item.data.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

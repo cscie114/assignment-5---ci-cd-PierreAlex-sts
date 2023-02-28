@@ -23,6 +23,7 @@ module.exports = async function() {
         let queryString = params.toString();
         let url = baseUrl + "?" + queryString;
         let parkData = await eleventyFetch(url, {
+            directory: ".cache",
             fetchOptions: {
                 headers: {
                     "User-agent": userAgent,
