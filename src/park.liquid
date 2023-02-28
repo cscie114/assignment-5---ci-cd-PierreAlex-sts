@@ -1,0 +1,28 @@
+---
+title: Parks
+layout: base
+pagination:
+    data: parks.data 
+    size: 1
+    alias: pks
+    addAllPagesToCollections: true
+permalink: "parks/{{ pks.fullName | slug }}/"
+tags:
+    - 'parks'
+eleventyComputed:
+    title: "{{ pks.fullName }}"
+    shortTitle: "{{ pks.parkCode }}"
+---
+<a href="/all-parks">All Parks</a>
+<figure class="parks">
+  {% for photo in pks.images %}
+    <p><img src="{{ photo.url }}"</p>
+    <figcaption style="font-weight: bold">{{ photo.title }}</figcaption>
+    <figcaption>{{ photo.caption }}</figcaption>
+    <figcaption>{{ photo.credit }}</figcaption>
+  {% endfor %}
+</figure>
+<p>{{ pks.description }}</p>
+<a href="https://www.nps.gov/{{ pks.parkCode }}">nps.gov/{{ pks.parkCode }}</a>
+<br>
+<a href="{{ pks.directionsUrl }}">Direction</a>
