@@ -65,6 +65,14 @@ module.exports = async function() {
             parks.data.push(...responseData.data);
             nextLink = responseData.start;
             parksParams.start += limit;
+            parks.data.forEach( p => {
+                console.log(p.parkCode);
+                let test = getPlacesFromParks(p.parkCode);
+                console.log(test);
+            });
+
+            console.log(parks.data.parkCode)
+            // let test = getPlacesFromParks(responseData.data.stateCode);
             } catch (err) {
                 console.log("something wrong with api\n");
                 console.log(err);
@@ -73,3 +81,29 @@ module.exports = async function() {
 
     return(parks);
 };
+
+
+async function getPlacesFromParks(parkCode) {
+    let userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0) Gecko/20100101 Firefox/102.0';
+   
+
+    let placeUrl = `https://developer.nps.gov/api/v1/places?parkCode=${parkCode}`
+    console.log(placeUrl);
+    try {
+        let responseData = await eleventyFetch(placeUrl, {
+            duration: cacheDuration,
+            fetchOptions: {
+                headers: {
+                    "User-agent": userAgent,
+                    "x-api-key": process.env.NPS_API_KEY
+                },
+            },
+            type: "json"
+        });
+        console.log(responseData);
+        return(responseData[0]);
+    } catch(err) {
+        console.error("something wrong with places api");
+        console.log(err);
+    }
+}
