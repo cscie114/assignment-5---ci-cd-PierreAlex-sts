@@ -20,9 +20,17 @@ eleventyComputed:
     <figcaption style="font-weight: bold">{{ photo.title }}</figcaption>
     <figcaption>{{ photo.caption }}</figcaption>
     <figcaption>{{ photo.credit }}</figcaption>
+
   {% endfor %}
 </figure>
 <p>{{ pks.description }}</p>
 <a href="https://www.nps.gov/{{ pks.parkCode }}">nps.gov/{{ pks.parkCode }}</a>
 <br>
 <a href="{{ pks.directionsUrl }}">Direction</a>
+{% for place in pks._places %}
+  <h3>{{ place.title }}</h3>
+  <p>{{ place.bodyText }}</p>
+  {% for img in place.images %}
+    <p><img src="{{ img.url }}"></p>
+  {% endfor %}
+{% endfor %}

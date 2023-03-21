@@ -17,34 +17,7 @@ module.exports = async function() {
     };
     
 
-    // fetch the API by constructing the url via params
-    // try {
-    //     let params = new URLSearchParams(parksParams);
-    //     let queryString = params.toString();
-    //     let url = baseUrl + "?" + queryString;
-    //     let parkData = await eleventyFetch(url, {
-    //         directory: ".cache",
-    //         fetchOptions: {
-    //             headers: {
-    //                 "User-agent": userAgent,
-    //                 "x-api-key": process.env.NPS_API_KEY
-    //             },
-    //         },
-    //         duration: "1d",
-    //         type: "json"
-    //     }).then((jsonData) => {
-    //         return jsonData;
-    //     });
-    //     return(parkData);
-
-    // } catch(err) {
-    //     console.error("something wrong with the api");
-    //     console.log(err);
-    // }
-    
-
     let parks = {data:[]};
-    let places = {data:[]};
     let nextLink = '';
     let total = '';
     do {
@@ -65,17 +38,10 @@ module.exports = async function() {
             responseData.data.forEach( (p) => {
                 getPlacesFromParks(p.parkCode)
                 .then((jsonResult) => {
-                    places.data.push(jsonResult);
+                    p._places = jsonResult; 
                     return jsonResult;
                 });
             });
-            places.data.forEach( (t) => {
-                t.forEach( (l) => {
-                    console.log(l.images);
-                })
-            })
-            // console.log(places.data);
-            // console.log(responseData);
             total = responseData.total;
             parks.data.push(...responseData.data);
             nextLink = responseData.start;
@@ -86,7 +52,6 @@ module.exports = async function() {
                 console.log(err);
         }
     } while ( nextLink <= total)
-
     return(parks);
 };
 
@@ -104,9 +69,6 @@ async function getPlacesFromParks(parkCode) {
                 },
             },
             type: "json"
-        }).then((i) => {
-            // console.log(i);
-            return i;
         });
         return(responseData.data);
     } catch(err) {
