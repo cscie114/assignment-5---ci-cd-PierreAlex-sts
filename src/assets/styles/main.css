@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Calibri, sans-serif;
+    background-color: rgb(238, 219, 195);
+    margin: 0;
+}
+
+header,
+main {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+img {
+    max-width: 100%;
+}
+
+a:link,
+a:hover,
+a:visited,
+a:active {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+header {
+    display: grid;
+    grid-template-areas:
+        "site-title   nav"
+        "page-title   page-title";
+    margin-bottom: 1rem;
+    border-bottom: 2px solid black;
+}
+
+header h1 {
+    grid-area: site-title;
+    margin: 0;
+    padding-top: 1rem;
+    font-size: 7vw;
+}
+
+header h2 {
+    grid-area: page-title;
+    margin: 0;
+    padding-top: 0.5rem;
+}
+
+main p {
+    line-height: 1.5;
+}
+
+div.parks {
+    list-style: none;
+    margin-left: 0.;
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 1rem;
+}
+
+
+div.places {
+    float: center;
+    width: 100%;
+    text-align: center;
+    border: thin black solid;
+    margin: 0.6;
+    padding: 1.4;
+}
+
+div.places img {
+    width: 90%;
+}
+

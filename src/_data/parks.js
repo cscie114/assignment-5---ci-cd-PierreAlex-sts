@@ -15,16 +15,18 @@ module.exports = async function() {
         limit: limit,
         start: 0
     };
-    
 
     let parks = {data:[]};
+    // Keep track of the next link and the total to be fetched.
     let nextLink = '';
     let total = '';
+    // Fetching the api until all data is fetched, using do/while structure
     do {
         let params = new URLSearchParams(parksParams);
         let queryString = params.toString();
         let url = baseUrl + "?" + queryString;
         try {
+            // fetch API
             let responseData = await eleventyFetch(url, {
                 duration: cacheDuration,
                 fetchOptions: {
@@ -38,13 +40,17 @@ module.exports = async function() {
             responseData.data.forEach( (p) => {
                 getPlacesFromParks(p.parkCode)
                 .then((jsonResult) => {
+                    // store the place data into _places to display it later
                     p._places = jsonResult; 
                     return jsonResult;
                 });
             });
+            // keep track of total objects to be fetched
             total = responseData.total;
+            // store data into the parks object
             parks.data.push(...responseData.data);
             nextLink = responseData.start;
+            // offset the start of next fetch
             parksParams.start += limit;
             
             } catch (err) {
@@ -55,7 +61,7 @@ module.exports = async function() {
     return(parks);
 };
 
-
+// Call the place API with the parkCode then return the data
 async function getPlacesFromParks(parkCode) {
     let userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0) Gecko/20100101 Firefox/102.0';
     let placeUrl = `https://developer.nps.gov/api/v1/places?parkCode=${parkCode}`

@@ -27,5 +27,8 @@
     "@11ty/eleventy": "^2.0.0",
     "@11ty/eleventy-fetch": "^3.0.0",
     "dotenv": "^16.0.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
   }
 }

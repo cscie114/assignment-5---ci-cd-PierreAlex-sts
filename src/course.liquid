@@ -1,0 +1,37 @@
+---
+pagination:
+    data: courses
+    size: 1
+    alias: course 
+    addAllPagesToCollections: true
+permalink: "course/{{ courses.data.course._id | slugify }}/"
+eleventyComputed:
+    title: "{{ courses.data.course.name}}"
+tags: coursePage
+layout: base
+---
+
+<a href="/">Home</a>
+{% assign sorted_nodes = courses.data.course.assignmentsConnection.nodes | sort: "dueAt" | reverse %}
+<h2>Assignments:</h2>
+{% for node in sorted_nodes %}
+  <ul>
+    <li>
+      {% for item in node %}
+        {{ item[1] }}
+        </br>
+      {% endfor %}
+    </li>
+  </ul>
+{% endfor %}
+
+<h2>Modules:</h2>
+{% for node in courses.data.course.modulesConnection.nodes %}
+  <ul>
+  {% for item in node %}
+    <li>
+      {{ item[1] }}
+    </li>
+  {% endfor %}
+  </ul>
+{% endfor %}
