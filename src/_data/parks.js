@@ -2,7 +2,7 @@
 require('dotenv').config();
 const eleventyFetch = require("@11ty/eleventy-fetch");
 const cacheDuration = '1d';
-const limit = 100;
+const limit = 50;
 
 module.exports = async function() {
    
