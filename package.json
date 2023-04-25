@@ -1,7 +1,7 @@
 {
-  "name": "assignment-3-apis-pierrealex-sts",
+  "name": "assignment-5---ci-cd-PierreAlex-sts",
   "version": "1.0.0",
-  "description": "project 3",
+  "description": "project 5",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cscie114/assignment-3-apis-PierreAlex-sts.git"
+    "url": "git+https://github.com/cscie114/assignment-5---ci-cd-PierreAlex-sts"
   },
   "keywords": [
     "jamstack",
@@ -20,9 +20,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cscie114/assignment-3-apis-PierreAlex-sts/issues"
+    "url": "https://github.com/cscie114/assignment-5---ci-cd-PierreAlex-sts/issues"
   },
-  "homepage": "https://github.com/cscie114/assignment-3-apis-PierreAlex-sts#readme",
+  "homepage": "https://github.com/cscie114/assignment-5---ci-cd-PierreAlex-sts#readme",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0",
     "@11ty/eleventy-fetch": "^3.0.0",
