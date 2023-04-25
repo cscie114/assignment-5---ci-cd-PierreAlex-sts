@@ -44,6 +44,6 @@ module.exports = async function() {
         courses= await responseData.json();
     } catch (err) {
         console.log("ERROR with graphql" + err);
-    };
+    }
     return courses;
 }
