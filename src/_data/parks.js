@@ -2,7 +2,7 @@
 require('dotenv').config();
 const eleventyFetch = require("@11ty/eleventy-fetch");
 const cacheDuration = '1d';
-const limit = 50;
+const limit = 100;
 
 module.exports = async function() {
    
@@ -37,7 +37,6 @@ module.exports = async function() {
                 },
                 type: "json"
             });
-            console.log(responseData);
             responseData.data.forEach( (p) => {
                 getPlacesFromParks(p.parkCode)
                 .then((jsonResult) => {
