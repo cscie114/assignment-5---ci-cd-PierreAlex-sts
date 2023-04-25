@@ -37,6 +37,7 @@ module.exports = async function() {
                 },
                 type: "json"
             });
+            console.log(responseData);
             responseData.data.forEach( (p) => {
                 getPlacesFromParks(p.parkCode)
                 .then((jsonResult) => {
