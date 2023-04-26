@@ -3,3 +3,8 @@ dist
 .cache
 .env
 .DS_Store
+
+netlify/functions/alerts/**
+!netlify/functions/alerts/index.js
+# Local Netlify folder
+.netlify
